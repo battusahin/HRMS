@@ -1,0 +1,5 @@
+package kodlamaio.HRMS.Java.entities.concretes;
+
+public class jobPositions {
+
+}
