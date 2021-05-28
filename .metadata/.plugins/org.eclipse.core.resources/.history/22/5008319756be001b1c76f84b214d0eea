@@ -1,0 +1,11 @@
+package kodlamaio.HRMS.Java.entities.concretes;
+
+@Inheritance(strategy = InheritanceType.JOINED)
+public class User {
+
+	
+	private int id;
+	private String email;
+	private String password;
+	
+}

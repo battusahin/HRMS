@@ -1,0 +1,5 @@
+package kodlamaio.HRMS.Java.business.concretes;
+
+public class CandidateManager {
+
+}
