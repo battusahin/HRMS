@@ -2,6 +2,9 @@
 <section name="Workbench">
 	<section name="MavenProjectImportWizardPage">
 		<list key="rootDirectory">
+			<item value="C:\HRMS.Java\hrms"/>
+			<item value="C:\HRMS.Java\hrmsJava"/>
+			<item value="C:\HRMS.Java\HRMS"/>
 			<item value="C:\HRMS.Java\HRMS.Java"/>
 		</list>
 		<list key="projectNameTemplate">
