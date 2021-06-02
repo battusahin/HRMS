@@ -1,6 +1,0 @@
-package kodlamaio.HRMS.Java.entities.concretes;
-
-
-public class Employees extends User {
-
-}

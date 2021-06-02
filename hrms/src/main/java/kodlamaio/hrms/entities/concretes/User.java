@@ -1,9 +1,5 @@
 package kodlamaio.hrms.entities.concretes;
 
-
-
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,32 +8,43 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
-@Table(name="users")
+@Table(name = "users")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="user_id")
+	@Column(name = "id")
 	private int id;
 	
-	@Column(name="created_at")
-	private Date createdAt;
-	
-	@Column(name="email")
+	@Email(message = "Gecerli bir email giriniz.")
+	@NotBlank(message = "Email alanını bos birakilamaz.")
+	@Column(name = "mail")
 	private String email;
 	
-	@Column(name="password")
+	@NotBlank(message = "Sifre alanını bos birakilamaz.")
+	@Size(min=6, max=16, message="Şifre en az 6, en fazla 16 karakterden oluşabilir")
+	@Column(name = "password")
 	private String password;
-
+	
+	@NotBlank(message = "Sifre alanını bos birakilamaz.")
+	@Transient
+	@Column(name="password")
+	private String passwordRepeat;	
+	
+	@JsonIgnore
+	@Column(name = "verify")
+	private boolean verify = false;
+	
 }
