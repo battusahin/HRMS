@@ -2,7 +2,9 @@ package kodlamaio.hrms.dataAccess.abstracts;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface Employer extends JpaRepository<Employer, Integer> {
+import kodlamaio.hrms.entities.concretes.Employer;
+
+public interface EmployerDao extends JpaRepository<Employer, Integer> {
 
 	Employer findByCompanyNameEquals(String companyName);
     
