@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import kodlamaio.hrms.business.abstracts.ResumeService;
+import kodlamaio.hrms.core.utilities.cloudinary.CloudinaryService;
 import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.core.utilities.result.SuccessDataResult;
@@ -33,16 +34,22 @@ public class ResumeManager implements ResumeService {
 
 	@Override
 	public Result add(Resume resume) {
+		if (resume.getLanguages() != null) {
+			resume.getLanguages().forEach(lang -> lang.setResume(resume));
+		}
+		if (resume.getEducation() != null) {
+			resume.getEducation().forEach(lang -> lang.setResume(resume));
+		}
+		if (resume.getTechnologies() != null) {
+			resume.getTechnologies().forEach(lang -> lang.setResume(resume));
+		}
+		if (resume.getJobExperiences() != null) {
+			resume.getJobExperiences().forEach(lang -> lang.setResume(resume));
+		}
+				
 		resumeDao.save(resume);
 		return new SuccessResult("Kayıt Başarılı");
 		
-
-		/*Resume resea = resumeDao.save(resume);
-		ResumeHelper helper = new ResumeHelper();
-		helper.setAllResumeId
-		(resea.getEducation(), resea.getLanguages(), 
-		resea.getTechnologies(), resea.getJobExperiences(), resea);
-		return new SuccessResult("Kayıt Başarılı");*/
 	}
 
 
@@ -53,7 +60,10 @@ public class ResumeManager implements ResumeService {
 
 	@Override
 	public Result saveImage(MultipartFile file, int resumeId) {
-		Map<String, String> uploader = (Map<String, String>) cloudinaryService.save(file).getData(); 
+		
+		
+		Map<String, String> uploader = (Map<String, String>) 
+				cloudinaryService.save(file).getData(); 
 		String imageUrl= uploader.get("url");
 		Resume Cv = resumeDao.getOne(resumeId);
 		Cv.setPhoto(imageUrl);

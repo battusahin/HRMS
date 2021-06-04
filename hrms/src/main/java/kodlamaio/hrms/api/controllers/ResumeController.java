@@ -20,7 +20,7 @@ import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.entities.concretes.Resume;
 
 @RestController
-@RequestMapping("api/resumes")
+@RequestMapping(value= "api/resumes")
 public class ResumeController {
 	
 	private ResumeService resumeService;
@@ -37,9 +37,11 @@ public class ResumeController {
 	}
 	
 	
-	@PostMapping("/add")
+		
+	@PostMapping(value="/add")
 	public Result add(@Valid @RequestBody Resume resume) {
 		return this.resumeService.add(resume);
+				
 	  }
 	
 	

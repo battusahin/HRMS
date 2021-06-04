@@ -44,10 +44,10 @@ public class CandidateFieldManager implements FieldService<Candidate> {
 		if (!this.verifyApiService.ApiControl(candidate)) {
 			return new ErrorResult("Mernis Kimlik Doğrulaması Başarısız Oldu");
 		}
-		if (this.userDao.findByMailEquals(candidate.getEmail())) {
+		if (this.userDao.findByEmailEquals(candidate.getEmail())) {
 			return new ErrorResult("Mail Adresi Daha Önce Kullanıldı");
 		}
-		if (candidatesDao.findByNationalIdentityEquals(candidate.getNationalIdentity())) {
+		if (candidatesDao.existsByNationalIdentity(candidate.getNationalIdentity())) {
 			return new ErrorResult("TC Kimlik Numarası Daha Önce Kullanıldı");
 		}		
 		if (!candidate.getPassword().equals(candidate.getPasswordRepeat())) {

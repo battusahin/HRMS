@@ -41,7 +41,7 @@ public class EmployerFieldManager implements FieldService<Employer> {
 		if (!splitMail[1].equals(employer.getWebAddress())) {
 			return new ErrorResult("Yalnızca Şirket Web Sitenizin Uzantısına Sahip Bir Mail Adresiyle Kayıt Olabilirsiniz");
 		}
-		if (this.userDao.findByMailEquals(employer.getEmail())) {
+		if (this.userDao.findByEmailEquals(employer.getEmail())) {
 			return new ErrorResult("Mail Adresi Daha Önce Kullanıldı");
 		}
 		if (employer.getPassword().equals(employer.getPasswordRepeat()) == false) {
