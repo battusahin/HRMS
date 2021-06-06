@@ -12,11 +12,10 @@ import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.entities.concretes.Candidate;
 
 @Service
-public class CandidateManager implements CandidateService{
+public class CandidateManager implements CandidateService {
 
-	private FieldService<Candidate> controllerService;
-		
-		
+private FieldService<Candidate> controllerService;
+	
 	@Autowired
 	public CandidateManager(FieldService<Candidate> controllerService) {
 		super();
@@ -27,12 +26,12 @@ public class CandidateManager implements CandidateService{
 	@Override
 	public DataResult<List<Candidate>> getAll() {
 		return this.controllerService.getAll();
-	}
 		
-	@Override
-	public Result add(Candidate newCandidate) {
-		return this.controllerService.verifyData(newCandidate);	
 	}
 
-	
+	@Override
+	public Result add(Candidate candidate) {
+		return this.controllerService.verifyData(candidate);	
+	}
+
 }

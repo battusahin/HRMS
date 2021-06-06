@@ -17,10 +17,9 @@ import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 
 @Service
 public class ConfirmEmployerManager implements ConfirmEmployerService {
-	
+
 	private ConfirmEmployerDao confirmEmployerDao;
 	private EmployerDao employerDao;
-	
 	@Autowired
 	public ConfirmEmployerManager(ConfirmEmployerDao confirmEmployerDao, EmployerDao employerDao) {
 		super();
@@ -40,26 +39,29 @@ public class ConfirmEmployerManager implements ConfirmEmployerService {
 
 	@Override
 	public Result confirmUser(String companyName) {
-		if (!employerDao.findByCompanyName(companyName)) {
+		if (!employerDao.existsByCompanyName(companyName)) {
 			return new ErrorResult("Şirket Kaydı Bulunamadı");
 		}
 		
-		if (employerDao.findByCompanyNameEquals(companyName).isUserConfirm()) {
-            return new ErrorResult("Daha önce onaylanmış Şirket");
-        }
+		if (employerDao.getByCompanyName(companyName).isUserConfirm()) {
+			return new ErrorResult("Daha önce onaylanmış Şirket");
+		}
 		
 		Employer employer = new Employer();
 		ConfirmEmployerByStuffUser cUser = new ConfirmEmployerByStuffUser();
-		employer = employerDao.findByCompanyNameEquals(companyName);
+		employer = employerDao.getByCompanyName(companyName);
 		employer.setUserConfirm(true);
 		employerDao.save(employer);
-		cUser = confirmEmployerDao.findByEmployerId(employer.getId());
+		cUser = confirmEmployerDao.getByEmployer_Id(employer.getId());
 		cUser.setConfirmed(true);
 		LocalDate e = (LocalDate.now());
 		cUser.setConfirmedDate(Date.valueOf(e));
 		confirmEmployerDao.save(cUser);
 		return new SuccessResult("Doğrulama Başarılı");
 	}
+	
+	
+	
 	
 	
 	

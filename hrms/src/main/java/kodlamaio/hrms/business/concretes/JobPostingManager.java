@@ -34,8 +34,6 @@ public class JobPostingManager implements JobPostingService {
 		this.dtoConverterService=dtoConverterService;
 	}
 	
-	
-	
 	private JobPosting dtoConvert(JobPostingAddDto jobPostingAddDto) {
 		return modelMapper.map(jobPostingAddDto, JobPosting.class);
 		
@@ -67,6 +65,8 @@ public class JobPostingManager implements JobPostingService {
 		return new SuccessDataResult<List<JobPostingDto>>
 		(this.dtoConverterService.dtoConverter(this.jobPostingDao.findByIsActiveAndEmployer_CompanyName(true, companyName), JobPostingDto.class),"Data Listelendi");
 	}
+
+	
 	
 	
 	

@@ -13,18 +13,18 @@ import kodlamaio.hrms.core.utilities.result.Result;
 @RequestMapping("/valid")
 public class VerifyCodeController {
 
-	private VerifyCodeService verifyCodeService;
+	private VerifyCodeService verificationService;
 	
 	@Autowired
-	public VerifyCodeController(VerifyCodeService verifyCodeService) {
+	public VerifyCodeController(VerifyCodeService verificationService) {
 		super();
-		this.verifyCodeService = verifyCodeService;
+		this.verificationService = verificationService;
 	}
 
 
 	@PutMapping("/{verifyCode}")
 	public Result update(@PathVariable("verifyCode") String verifyCode) {
-		return verifyCodeService.verifyUser(verifyCode);
+		return verificationService.verifyUser(verifyCode);
 	}
 	
 	

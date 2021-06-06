@@ -22,13 +22,11 @@ import kodlamaio.hrms.entities.dtos.EducationDto;
 public class EducationController {
 
 	private EducationService educationService;
-	
 
 	@Autowired
 	public EducationController(EducationService educationService) {
 		super();
 		this.educationService = educationService;
-		
 	}
 	
 	@GetMapping("/getall")

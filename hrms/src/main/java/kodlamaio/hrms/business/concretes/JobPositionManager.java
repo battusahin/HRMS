@@ -16,7 +16,7 @@ public class JobPositionManager implements JobPositionService {
 
 	private FieldService<JobPosition> controllerService;
 	
-		
+	
 	@Autowired
 	public JobPositionManager(FieldService<JobPosition> controllerService) {
 		super();
@@ -31,8 +31,8 @@ public class JobPositionManager implements JobPositionService {
 
 
 	@Override
-	public Result add(JobPosition newJobPositions) {
-		return controllerService.verifyData(newJobPositions);
-		}
+	public Result add(JobPosition jobPositions) {
+		return controllerService.verifyData(jobPositions);
+	}
 
 }

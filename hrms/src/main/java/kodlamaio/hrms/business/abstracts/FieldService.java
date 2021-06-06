@@ -7,7 +7,7 @@ import java.util.List;
 public interface FieldService<T> {
 
 	Result verifyData(T data);
-	
+
 	DataResult<List<T>> getAll();
-	
+
 }

@@ -5,11 +5,12 @@ import java.util.List;
 import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.entities.concretes.Technology;
+import kodlamaio.hrms.entities.dtos.TechnologyDto;
 
 public interface TechnologyService {
 
-	Result add(Technology technology);
-	
-	DataResult<List<Technology>> getAll();
-	
+	Result add(TechnologyDto technologyDto);
+
+	DataResult<List<TechnologyDto>> getAll();
+
 }

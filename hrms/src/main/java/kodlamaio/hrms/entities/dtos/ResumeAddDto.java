@@ -2,6 +2,8 @@ package kodlamaio.hrms.entities.dtos;
 
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -13,19 +15,19 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EducationDto {
+public class ResumeAddDto {
 	
-	@JsonIgnore
+	@JsonProperty(access = Access.READ_ONLY)
 	private int id;
-	private int resumeId;
-	private String schoolName;
-	@JsonProperty(access = Access.WRITE_ONLY)
-	private int graduateId;
-	private String graduateDescription;
-	private String schoolDepartment;
-	private Date startedDate;
-	private Date endedDate;
+	private int candidateId;
+	private String githubLink;
+	private String linkedLink;
+	private String photo;
+	private String description;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date createdDate;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date updatedDate;
 	
 
 }

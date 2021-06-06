@@ -19,16 +19,16 @@ import kodlamaio.hrms.entities.concretes.UserVerify;
 @Service
 public class VerifyCodeManager implements VerifyCodeService {
 
-	private UserVerifyDao userVerifyDao;
+	private UserVerifyDao verificationDao;
 	private UserDao userDao;
-	
 	@Autowired
-	public VerifyCodeManager(UserVerifyDao userVerifyDao, UserDao userDao) {
+	public VerifyCodeManager(UserVerifyDao verificationDao, UserDao userDao) {
 		super();
-		this.userVerifyDao = userVerifyDao;
+		this.verificationDao = verificationDao;
 		this.userDao = userDao;
 	}
 
+	
 	@Override
 	public String createVerifyCode(User user) {
 		String vCode = UUID.randomUUID().toString();
@@ -37,38 +37,38 @@ public class VerifyCodeManager implements VerifyCodeService {
 		Code.setUserId(user);
 		Code.setCreatedDate(Date.valueOf(e));
 		Code.setVerifyCode(UUID.randomUUID().toString());
-		this.userVerifyDao.save(Code);
+		this.verificationDao.save(Code);
 		return vCode;
 	}
 
 	@Override
 	public void sendMail(String mail) {
-		
 		System.out.println("Doğrulama Maili Gönderildi : " + mail);
+		
 	}
 
+	
 	@Override
-    public Result verifyUser(String code) {
+	public Result verifyUser(String code) {
+		if (!this.verificationDao.existsByVerifyCode(code)) {
+			return new ErrorResult("Hatalı Doğrulama İşlemi");
+		}
+		UserVerify newVerifyCode = verificationDao.getByVerifyCode(code);
+		if (this.verificationDao.getOne(newVerifyCode.getId()).isConfirmed()) {
+			return new ErrorResult("Doğrulama işlemi daha önce yapıldı");
+		}
+		LocalDate e = (LocalDate.now());
+		newVerifyCode.setConfirmed(true);
+		newVerifyCode.setConfirmedDate(Date.valueOf(e));
+		verificationDao.save(newVerifyCode);
+		User verifyUser = new User();
+		verifyUser = userDao.getOne(newVerifyCode.getUserId().getId());
+		verifyUser.setVerify(true);
+		userDao.save(verifyUser);
+		return new SuccessResult("Doğrulama Başarılı");	
+	}
 
-        if (!this.userVerifyDao.findByVerifyCode(code)) {
-            return new ErrorResult("Hatalı Doğrulama İşlemi");
-        }
-        UserVerify newVerifyCode = userVerifyDao.findByVerifyCodeEquals(code);
-        if (this.userVerifyDao.getOne(newVerifyCode.getId()).isConfirmed()) {
-            return new ErrorResult("Doğrulama işlemi daha önce yapıldı");
-        }
-        LocalDate e = (LocalDate.now());
-        newVerifyCode.setConfirmed(true);
-        newVerifyCode.setConfirmedDate(Date.valueOf(e));
-        userVerifyDao.save(newVerifyCode);
-        User verifyUser = new User();
-        verifyUser = userDao.getOne(newVerifyCode.getUserId().getId());
-        verifyUser.setVerify(true);
-        userDao.save(verifyUser);
-        return new SuccessResult("Doğrulama Başarılı");
-
-
-    }
+	
 
 	
 		

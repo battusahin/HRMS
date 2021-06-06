@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -18,9 +19,11 @@ import kodlamaio.hrms.business.abstracts.ResumeService;
 import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.entities.concretes.Resume;
+import kodlamaio.hrms.entities.dtos.ResumeAddDto;
+import kodlamaio.hrms.entities.dtos.ResumeDto;
 
 @RestController
-@RequestMapping(value= "api/resumes")
+@RequestMapping("api/resumes")
 public class ResumeController {
 	
 	private ResumeService resumeService;
@@ -32,23 +35,27 @@ public class ResumeController {
 	}
 	
 	@GetMapping("/getall")
-	public DataResult<List<Resume>> getAll(){
+	public DataResult<List<ResumeDto>> getAll(){
 		return this.resumeService.getAll();
 	}
 	
 	
-		
-	@PostMapping(value="/add")
-	public Result add(@Valid @RequestBody Resume resume) {
-		return this.resumeService.add(resume);
-				
+	@PostMapping("/add")
+	public ResponseEntity<?> add(@Valid @RequestBody ResumeAddDto resumeAddDto) {
+		return ResponseEntity.ok(resumeService.add(resumeAddDto));
 	  }
 	
 	
-	@PutMapping("/uploadImage")
+	@PutMapping("/uploadImage") //güncelleme işlemi olduğunu belirttik.
+	//resim yüklemiceksek @RequestBody 
 	public Result saveImage(@RequestBody MultipartFile file,@RequestParam int resumeId) {
 		return this.resumeService.saveImage(file, resumeId);
 		
+	}
+	
+	@GetMapping("/getByCandidateId")
+	public DataResult<List<ResumeDto>> findAllByCandidateId(@RequestParam("user_id") int candidateId) {
+		return this.resumeService.findAllByCandidateId(candidateId);
 	}
 	
 }

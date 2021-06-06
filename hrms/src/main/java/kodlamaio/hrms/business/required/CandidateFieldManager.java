@@ -21,13 +21,13 @@ import kodlamaio.hrms.entities.concretes.Candidate;
 public class CandidateFieldManager implements FieldService<Candidate> {
 	
 	
-	@Autowired
+	
 	private CandidateDao candidatesDao;
 	private UserDao userDao; 
 	private VerifyApiService<Candidate> verifyApiService;
 	private VerifyCodeService verifyCodeService;
 	
-	
+	@Autowired
 	public CandidateFieldManager(CandidateDao candidatesDao, UserDao userDao, VerifyApiService<Candidate> verifyApiService, VerifyCodeService verifyCodeService) {
 		super();
 		this.candidatesDao = candidatesDao;
@@ -44,7 +44,7 @@ public class CandidateFieldManager implements FieldService<Candidate> {
 		if (!this.verifyApiService.ApiControl(candidate)) {
 			return new ErrorResult("Mernis Kimlik Doğrulaması Başarısız Oldu");
 		}
-		if (this.userDao.findByEmailEquals(candidate.getEmail())) {
+		if (this.userDao.existsByEmail(candidate.getEmail())) {
 			return new ErrorResult("Mail Adresi Daha Önce Kullanıldı");
 		}
 		if (candidatesDao.existsByNationalIdentity(candidate.getNationalIdentity())) {

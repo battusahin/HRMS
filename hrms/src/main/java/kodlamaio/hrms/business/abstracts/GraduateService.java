@@ -11,6 +11,5 @@ public interface GraduateService {
 	DataResult<List<Graduate>> getAll();
 	Result add(Graduate graduate);
 	
-	
 
 }

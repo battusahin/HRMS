@@ -15,10 +15,10 @@ import kodlamaio.hrms.dataAccess.abstracts.GraduateDao;
 import kodlamaio.hrms.entities.concretes.Graduate;
 
 @Service
-public class GraduateManager implements GraduateService{
+public class GraduateManager implements GraduateService {
 
 	private GraduateDao graduateDao;
-	
+
 	@Autowired
 	public GraduateManager(GraduateDao graduateDao) {
 		super();
@@ -28,8 +28,7 @@ public class GraduateManager implements GraduateService{
 	@Override
 	public DataResult<List<Graduate>> getAll() {
 		return new SuccessDataResult<List<Graduate>>(this.graduateDao.findAll(), "Data Listelendi");
-				
-				
+
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class GraduateManager implements GraduateService{
 		if (graduateDao.existsByDescription(graduate.getDescription())) {
 			return new ErrorResult("Daha önce Eklendi");
 		}
-		
+
 		this.graduateDao.save(graduate);
 		return new SuccessResult("Eklendi");
 	}
