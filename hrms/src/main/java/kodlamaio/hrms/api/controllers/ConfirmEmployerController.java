@@ -1,5 +1,6 @@
 package kodlamaio.hrms.api.controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,11 +14,12 @@ import kodlamaio.hrms.core.utilities.result.Result;
 public class ConfirmEmployerController {
 
 	private ConfirmEmployerService confirmEmployerService;
-
+	@Autowired
 	public ConfirmEmployerController(ConfirmEmployerService confirmEmployerService) {
 		super();
 		this.confirmEmployerService = confirmEmployerService;
 	}
+	
 	
 	
 	@PutMapping("/{companyName}")

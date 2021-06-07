@@ -11,7 +11,8 @@ import kodlamaio.hrms.core.utilities.result.ErrorResult;
 import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.core.utilities.result.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.ConfirmEmployerDao;
-import kodlamaio.hrms.entities.concretes.ConfirmEmployerByStuffUser;
+import kodlamaio.hrms.entities.concretes.ConfirmEmployer;
+
 import kodlamaio.hrms.entities.concretes.Employer;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 
@@ -29,7 +30,7 @@ public class ConfirmEmployerManager implements ConfirmEmployerService {
 
 	@Override
 	public void createConfirmEmployer(Employer employer) {
-		ConfirmEmployerByStuffUser cUser = new ConfirmEmployerByStuffUser();
+		ConfirmEmployer  cUser = new ConfirmEmployer();
 		cUser.setEmployer(employer);
 		cUser.setStaffUser(1);
 		this.confirmEmployerDao.save(cUser);
@@ -48,7 +49,7 @@ public class ConfirmEmployerManager implements ConfirmEmployerService {
 		}
 		
 		Employer employer = new Employer();
-		ConfirmEmployerByStuffUser cUser = new ConfirmEmployerByStuffUser();
+		ConfirmEmployer cUser = new ConfirmEmployer();
 		employer = employerDao.getByCompanyName(companyName);
 		employer.setUserConfirm(true);
 		employerDao.save(employer);

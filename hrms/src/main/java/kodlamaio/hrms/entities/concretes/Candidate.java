@@ -14,31 +14,36 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-@EqualsAndHashCode(callSuper=false)
 @Data
-@Entity
-@Table(name = "candidate_users")
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name="candidate_users")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@PrimaryKeyJoinColumn(name="user_id")
-public class Candidate extends User {
+@EqualsAndHashCode(callSuper=false)
+public class Candidate extends User{
 	
-	@NotBlank(message="İsim Alanı Bos Birakilamaz.")
-	@Size(min = 3, message = "İsim alanında en az 3 karakter kullanmaniz gerekiyor.") 
+	@NotBlank(message="İsim alanı boş bırakılamaz !")
+	@Size(min = 3, message = "İsim alanında en az 3 karakter kullanmanız gerekiyor") 
 	@Column(name="name")
 	private String name;
 	
-	@NotBlank(message="Soyisim Alanı Boş olamaz")
+		
+	@NotBlank(message="Soyisim Alanı Boş bırakılamaz ! ")
 	@Column(name="surname")
 	private String surname;
 	
-	@NotBlank(message="TC Kimlik Numarası Alanı Boş Olamaz")
-	@Size(min = 11, max=11, message = "TCKimlik No 11 hane olmalıdır")
+	@NotBlank(message="TC Kimlik Numarası Alanı Boş Bırakılamaz !") 
+	@Size(min = 11, max=11, message = "TC no 11 karakterden oluşur !")
 	@Column(name="national_identity")
 	private String nationalIdentity;
-		
-	@NotBlank(message="Doğum Yılı Alanı Boş Olamaz")
+	
+	@NotBlank(message="Doğum yılı boş bırakılamaz, doğum yılı 4 karakterden olusmalıdır.")
 	@Column(name="birth_year")
 	private String birth_year;
+	
+	
+	
+	
+
 }

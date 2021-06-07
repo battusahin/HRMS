@@ -22,8 +22,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Entity
 @Table(name="confirm_employer_users")
-public class ConfirmEmployerByStuffUser {
-
+public class ConfirmEmployer {
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name="id")
@@ -42,5 +42,5 @@ public class ConfirmEmployerByStuffUser {
 	
 	@Column(name="is_confirmed")
 	private boolean isConfirmed;
-	
+
 }
