@@ -1,9 +1,8 @@
 package kodlamaio.hrms.entities.dtos;
-import java.util.List;
 
 import java.sql.Date;
+import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -11,9 +10,15 @@ import kodlamaio.hrms.entities.concretes.Education;
 import kodlamaio.hrms.entities.concretes.JobExperience;
 import kodlamaio.hrms.entities.concretes.Language;
 import kodlamaio.hrms.entities.concretes.Technology;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ResumeDto {
-	
+
 	@JsonProperty(access = Access.READ_ONLY)
 	private int id;
 	private int candidateId;
@@ -28,5 +33,4 @@ public class ResumeDto {
 	private List<Technology> technologies;
 	private List<Education> education;
 	
-
 }

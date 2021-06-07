@@ -41,7 +41,7 @@ public class JobExperience {
 	@Column(name="company_name")
 	private String companyName;
 	
-	@ManyToOne(targetEntity = JobPosition.class ,fetch = FetchType.LAZY)
+	@ManyToOne(targetEntity = JobPosition.class )
 	@JoinColumn(name = "job_position_id", referencedColumnName =  "id" ,nullable = false)
 	private JobPosition jobPosition;
 	
