@@ -35,8 +35,6 @@
     <fullyQualifiedTypeName name="kodlamaio.hrms.entities.dtos.ResumeAddDto"/>
     <fullyQualifiedTypeName name="kodlamaio.hrms.entities.dtos.TechnologyDto"/>
     <fullyQualifiedTypeName name="org.springframework.http.ResponseEntity"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
-    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty.Access"/>
     <fullyQualifiedTypeName name="java.util.List"/>
     <fullyQualifiedTypeName name="kodlamaio.hrms.entities.concretes.Language"/>
     <fullyQualifiedTypeName name="kodlamaio.hrms.entities.concretes.Technology"/>
@@ -60,4 +58,6 @@
     <fullyQualifiedTypeName name="kodlamaio.hrms.entities.concretes.ConfirmEmployer"/>
     <fullyQualifiedTypeName name="org.springframework.beans.factory.annotation.Autowired"/>
     <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.CrossOrigin"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty"/>
+    <fullyQualifiedTypeName name="com.fasterxml.jackson.annotation.JsonProperty.Access"/>
 </qualifiedTypeNameHistroy>

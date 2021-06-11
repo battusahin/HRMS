@@ -1,7 +1,7 @@
 import JobPostings from "./pages/JobPostings";
-import JobPosition from "./pages/JobPosition";
-import Employer from "./pages/users/Employer";
+import JobPositions from "./pages/JobPositions";
 import Candidate from "./pages/users/Candidate";
+import Employer from "./pages/users/Employer";
 import Resumes from "./pages/Resumes";
 import Dashboard from "./layouts/Dashboard";
 
@@ -15,35 +15,35 @@ export const routes = [
         isHeaderElement: true,
     },
     {
-        path: "/employers",
+        path: "/employer",
         exact: true,
         component: <Employer />,
         title: "Employer",
         isHeaderElement: true,
     },
     {
-        path: "/candidates",
+        path: "/candidate",
         exact: true,
         component: <Candidate />,
         title: "Candidate",
         isHeaderElement: true,
     },
     {
-        path: "/jobPostings",
+        path: "/jobPosting",
         exact: true,
         component: <JobPostings />,
         title: "JobPostings",
         isHeaderElement: true,
     },
     {
-        path: "/jobs",
+        path: "/jobPosition",
         exact: true,
-        component: <JobPosition/>,
+        component: <JobPositions />,
         title: "JobPosition",
         isHeaderElement: true,
     },
     {
-        path: "/resumes",
+        path: "/resume",
         exact: true,
         component: <Resumes />,
         title: "Resume",
