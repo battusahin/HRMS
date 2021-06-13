@@ -1,16 +1,18 @@
-import { Grid } from "semantic-ui-react";
-export default function Dashboard({ children }) {
+import Sidebar from "./Sidebar";
+import {
+   Row,
+   Col
+  } from "react-bootstrap";
 
-    return (
-        <div>
-            {children}
-            <Grid>
-                <Grid.Row>
-                    <Grid.Column width={1}></Grid.Column>
-                    <Grid.Column width={12}>
-                    </Grid.Column>
-                </Grid.Row>
-            </Grid>
-        </div>
-    )
+export default function Dashboard({ children }) {
+  return (
+    <div>
+      
+        <Row>
+          <Col sm={3}><Sidebar/></Col>
+          <Col sm={9}>asdsad</Col>
+        </Row>
+      
+    </div>
+  );
 }

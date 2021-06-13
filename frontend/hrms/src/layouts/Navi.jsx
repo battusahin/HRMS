@@ -1,55 +1,69 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
-import { Dropdown, Menu} from "semantic-ui-react";
-import { Link, NavLink } from "react-router-dom";
-import { routes } from "../Routing";
-import SignedIn from "./SignedIn";
-import SignedOut from "./SignedOut";
+
+import {
+  Navbar,
+  Container,
+  Nav,
+  Form,
+  Button,
+  Jumbotron,
+  FormControl
+} from "react-bootstrap";
+
 export default function Navi() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const history = useHistory();
-  function handleSignOut(params) {
-    //Çıkış yap
-    setIsAuthenticated(false);
-    history.push("/");
-  }
-  function handleSignIn(params) {
-    setIsAuthenticated(true);
-  }
   return (
     <div>
-      <Menu inverted size="large">
-        {routes.map((route) => (
-          <Menu.Item key={route.title} name={route.title}>
-            {" "}
-            <Link to={route.path}>{route.title}</Link>{" "}
-          </Menu.Item>
-        ))}
-        <Menu.Menu position="right">
-          
-          <Dropdown item text="Language">
-              
-            <Dropdown.Menu>
-              <Dropdown.Item as={NavLink} to="/jobPosting">
-                İş ilanları
-              </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to="/resume">
-                Açık Cv'ler
-              </Dropdown.Item>
-              <Dropdown.Item as={NavLink} to="/jobPosition">
-                Pozisyonlar
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-          <Menu.Item>
-            {isAuthenticated ? (
-              <SignedIn signOut={handleSignOut} bisey="1" />
-            ) : (
-              <SignedOut signIn={handleSignIn} bisey="1" />
-            )}
-          </Menu.Item>
-        </Menu.Menu>
-      </Menu>
+      <Navbar bg="light" expand="md">
+        <Container>
+          <Navbar.Brand href="#" style={{ fontSize: "30px" }}>
+            H R M S
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav
+              className="ml-auto my-2 my-lg-4 mr-5"
+              style={{ maxHeight: "100px" }}
+              navbarScroll
+            >
+              <Nav.Link href="#action1" className="h4 mr-4">
+                Home
+              </Nav.Link>
+              <Nav.Link href="#action1" className="h4 mr-4">
+                Resumes
+              </Nav.Link>
+              <Nav.Link href="#action1" className="h4 mr-4">
+                JobPostings
+              </Nav.Link>
+              <Nav.Link href="#action1" className="h4 mr-4">
+                Candidates
+              </Nav.Link>
+              <Nav.Link href="#action1" className="h4 mr-4">
+                Employers
+              </Nav.Link>
+            </Nav>
+            <Button variant="outline-primary" className="ml-2 mr-3">
+              Login
+            </Button>
+            <Button variant="outline-primary">SignUp</Button>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <Jumbotron style={{ padding: "12rem" }}>
+        <h1 style={{ fontSize: "8rem" }} className="mb-5">WELCOME</h1>
+        <p style={{ fontSize: "3rem" }}>
+          Human Resources Management System
+        </p>
+
+        <Form className="d-inline-flex">
+          <FormControl
+            type="search"
+            placeholder="City"
+            className="mr-4 ml-4"
+            aria-label="Search"
+          />
+          <Button variant="outline-success">Search</Button>
+        </Form>
+      </Jumbotron>
     </div>
   );
 }

@@ -20,7 +20,7 @@ function App() {
           ))}
         </Switch>
       </Container>
-      <Footer/>
+      <Footer className="footer--pin"/>
     </div>
   );
 }

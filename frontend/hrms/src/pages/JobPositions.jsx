@@ -24,6 +24,7 @@ export default function JobPositions() {
                         </Table.Row>
                     ))}
                 </Table.Body>
+                
             </Table>
         </div>
     )
