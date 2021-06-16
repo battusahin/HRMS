@@ -1,44 +1,86 @@
-import React, { useState, useEffect } from 'react'
-import ResumeService from '../services/resumeService.js';
-import { Table } from 'semantic-ui-react'
+import React, { useState, useEffect } from "react";
+import ResumeService from "../services/resumeService.js";
+import { Table, Button, Image, Header, Icon } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 export default function Resumes() {
-    const [resumes, setResumes] = useState([]);
-    useEffect(() => {
-        let resumeService = new ResumeService();
-        resumeService.getResumes().then(result => setResumes(result.data.data))
-    }, [])
-    //const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
-    
-    return (
-        <div>
-            <Table inverted celled fixed>
-                <Table.Header>
-                    <Table.Row>                        
-                        <Table.HeaderCell>Name</Table.HeaderCell>
-                        <Table.HeaderCell>LinkedIn</Table.HeaderCell>
-                        <Table.HeaderCell>GithubLink</Table.HeaderCell>
-                        <Table.HeaderCell>Photo</Table.HeaderCell>
-                        <Table.HeaderCell>Description</Table.HeaderCell>
-                        <Table.HeaderCell>JobExperiences</Table.HeaderCell>
-                        <Table.HeaderCell>JobPosition</Table.HeaderCell>                   
-                    </Table.Row>
-                </Table.Header>
-                <Table.Body>
-                    {resumes.map((resume) => (
-                        <Table.Row key={resume.id}>
-                            
-                            <Table.Cell>{resume.candidateName}</Table.Cell>
-                            <Table.Cell>{resume.linkedLink}</Table.Cell>
-                            <Table.Cell>{resume.githubLink}</Table.Cell>
-                            <Table.Cell>{resume.photo}</Table.Cell>
-                            <Table.Cell>{resume.description}</Table.Cell>
-                            <Table.Cell>{resume.jobExperiences[0].companyName}</Table.Cell>
-                            <Table.Cell>{resume.jobExperiences[0].jobPosition.position}</Table.Cell>
-                        </Table.Row>
-                    ))}
-                </Table.Body>
-            </Table>
-        </div>
-    )
+  const [resumes, setResumes] = useState([]);
+  useEffect(() => {
+    let resumeService = new ResumeService();
+    resumeService.getResumes().then((result) => setResumes(result.data.data));
+  }, []);
+  //const paragraph = <Image src='https://react.semantic-ui.com/images/wireframe/short-paragraph.png' />
+
+  return (
+    <div>
+      <Table striped bordered hover variant="grey">
+        <thead>
+          <tr>
+            <th>Aday</th>
+            <th>Teknolojiler</th>
+            <th>Diller</th>
+            <th>Github</th>
+            <th>Linkedin</th>
+          </tr>
+        </thead>
+        <tbody>
+          {resumes.map((resume) => (
+            <tr key={resume.id}>
+              <td>
+                <Header as="h4" image>
+                  <Image src={resume.photo} rounded size="mini" />
+                  <Header.Content>
+                    {resume.candidateName + " " + resume.candidateSurname}
+                  </Header.Content>
+                </Header>
+              </td>
+              <td>
+                {resume.technologies.map((tech) => (
+                  <p key={tech.id}>{tech.description}</p>
+                ))}
+              </td>
+              <td>
+                {resume.languages.map((lang) => (
+                  <p key={lang.id}>
+                    {lang.language + " Seviye: " + lang.langLevel}
+                  </p>
+                ))}
+              </td>
+              <td>
+                <a
+                  href={resume.githubLink}
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                >
+                  <Button secondary>
+                    <Icon name="github" /> Github
+                  </Button>
+                </a>
+              </td>
+              <td>
+                <a
+                  href={resume.linkedLink}
+                  target={"_blank"}
+                  rel="noopener noreferrer"
+                >
+                  <Button color="linkedin">
+                    <Icon name="linkedin" /> LinkedIn
+                  </Button>
+                </a>
+              </td>
+              <td>
+                <Button animated as={Link} to={`/resume/${resume.candidateId}`}>
+                  <Button.Content visible>İncele</Button.Content>
+                  <Button.Content hidden>
+                    <Icon name="arrow right" />
+                  </Button.Content>
+                </Button>
+              </td>
+              
+            </tr>
+          ))}
+        </tbody>
+      </Table>
+    </div>
+  );
 }

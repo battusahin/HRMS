@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
 import {
   Navbar,
   Container,
@@ -7,63 +7,89 @@ import {
   Form,
   Button,
   Jumbotron,
-  FormControl
+  FormControl,
+  NavDropdown,
+  NavItem,
+  ButtonGroup,
+  Dropdown,
 } from "react-bootstrap";
 
 export default function Navi() {
   return (
     <div>
-      <Navbar bg="light" expand="md">
-        <Container>
-          <Navbar.Brand href="#" style={{ fontSize: "30px" }}>
-            H R M S
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls="navbarScroll" />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="ml-auto my-2 my-lg-4 mr-5"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Nav.Link href="#action1" className="h4 mr-4">
-                Home
-              </Nav.Link>
-              <Nav.Link href="#action1" className="h4 mr-4">
-                Resumes
-              </Nav.Link>
-              <Nav.Link href="#action1" className="h4 mr-4">
-                JobPostings
-              </Nav.Link>
-              <Nav.Link href="#action1" className="h4 mr-4">
-                Candidates
-              </Nav.Link>
-              <Nav.Link href="#action1" className="h4 mr-4">
-                Employers
-              </Nav.Link>
-            </Nav>
-            <Button variant="outline-primary" className="ml-2 mr-3">
-              Login
-            </Button>
-            <Button variant="outline-primary">SignUp</Button>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-      <Jumbotron style={{ padding: "12rem" }}>
-        <h1 style={{ fontSize: "8rem" }} className="mb-5">WELCOME</h1>
-        <p style={{ fontSize: "3rem" }}>
-          Human Resources Management System
-        </p>
+      <Navbar bg="light" expand="sm">
+                <Container>
+                    <Navbar.Brand href="#" className="h1" style={{ fontSize: '3rem' }}>H R M S</Navbar.Brand>
+                    <Navbar.Toggle aria-controls="navbarScroll" />
+                    <Navbar.Collapse id="navbarScroll">
+                        <Nav
+                            className="ml-auto my-5 my-lg-3"
+                            style={{ maxHeight: '100px' }}
+                            navbarScroll
+                        >
 
-        <Form className="d-inline-flex">
-          <FormControl
-            type="search"
-            placeholder="City"
-            className="mr-4 ml-4"
-            aria-label="Search"
-          />
-          <Button variant="outline-success">Search</Button>
-        </Form>
-      </Jumbotron>
+                            <Nav  className="h4 mr-4"><Link to={'/'} style={{ textDecoration: 'none' ,color:'black'}}>Home</Link></Nav>
+                            <Nav className="h4 mr-4"><Link to={'/resumes'} style={{ textDecoration: 'none' ,color:'black'}}>Resume</Link></Nav>
+                            <Nav className="h4 mr-4"><Link to={'/jobPostings'} style={{ textDecoration: 'none' ,color:'black'}}>JobPosting</Link></Nav>
+                            <Nav className="h4 mr-4"><Link to={'/candidates'} style={{ textDecoration: 'none' ,color:'black'}}>Candidate</Link></Nav>
+                            <Nav className="h4 mr-4"><Link to={'/employers'} style={{ textDecoration: 'none' ,color:'black'}}>Employer</Link></Nav>
+                        </Nav>
+
+
+
+                        <Dropdown as={ButtonGroup} className='mr-2 ml-3'>
+                            <Button variant="success">Login</Button>
+
+                            <Dropdown.Toggle split variant="success" id="dropdown-split-basic" />
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1">Employer</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">Candidate</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+
+                        <Dropdown as={ButtonGroup}>
+                            <Button variant="outline-success">SignUp</Button>
+
+                            <Dropdown.Toggle split variant="outline-success" id="dropdown-split-basic" />
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1">Employer</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">Candidate</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+                        <Dropdown as={ButtonGroup}>
+                            <Button variant="outline-success">ilan ekle</Button>
+
+                            <Dropdown.Toggle split variant="outline-success" id="dropdown-split-basic" />
+
+                            <Dropdown.Menu>
+                                <Dropdown.Item href="#/action-1" as={Link} to={"AddJobPosting"}>ilan ekle</Dropdown.Item>
+                                <Dropdown.Item href="#/action-2">Candidate</Dropdown.Item>
+                            </Dropdown.Menu>
+                        </Dropdown>
+
+                    </Navbar.Collapse>
+                </Container>
+            </Navbar>
+            <Jumbotron>
+                <h1 className='h1' style={{ fontSize: '3rem' }}>Hello, world!</h1>
+                <h5>
+                    This is a simple hero unit, a simple jumbotron-style component for calling
+                    extra attention to featured content or information.
+                </h5>
+                <Form className="d-inline-flex">
+                    <FormControl
+                        type="search"
+                        placeholder="City"
+                        className="mr-4 ml-4"
+                        aria-label="Search"
+                    />
+                    <Button variant="success">Search</Button>
+                </Form>
+
+
+            </Jumbotron>
     </div>
   );
 }

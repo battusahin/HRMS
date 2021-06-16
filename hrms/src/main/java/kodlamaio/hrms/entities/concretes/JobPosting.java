@@ -61,4 +61,12 @@ public class JobPosting {
 	@JoinColumn(name = "employer_id", referencedColumnName =  "user_id" ,nullable = false)
 	private Employer employer;
 	
+	@ManyToOne(targetEntity = WorkPlace.class ,fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "work_place_id", referencedColumnName =  "id" ,nullable = false)
+	private WorkPlace workPlace;
+	
+	@ManyToOne(targetEntity = WorkTime.class ,fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "work_time_id", referencedColumnName =  "id" ,nullable = false)
+	private WorkTime workTime;
+	
 }

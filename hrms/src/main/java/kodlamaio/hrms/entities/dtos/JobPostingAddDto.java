@@ -21,6 +21,8 @@ public class JobPostingAddDto {
 	private int minSalary;
 	private int maxSalary;
 	private int cityId;
+	private int workPlaceId;
+	private int workTimeId;
 	private Date createdDate;
 	private Date closedDate;
 	private String description;

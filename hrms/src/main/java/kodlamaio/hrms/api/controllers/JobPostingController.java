@@ -31,28 +31,30 @@ public class JobPostingController {
 		super();
 		this.jobPostingService = jobPostingService;
 	}
-	
-	
+
 	@GetMapping("/getActive")
-	DataResult<List<JobPostingDto>> findByIsActive(){
+	DataResult<List<JobPostingDto>> findByIsActive() {
 		return this.jobPostingService.findByIsActive();
 	}
-	
-	
+
 	@PostMapping("/add")
 	Result add(@Valid @RequestBody JobPostingAddDto jobPostingAddDto) {
 		return this.jobPostingService.add(jobPostingAddDto);
 	}
-	
-	
+
 	@GetMapping("/getActive/OrderByEndDate")
-	DataResult<List<JobPostingDto>> findByIsActiveOrderByClosedDate(){
+	DataResult<List<JobPostingDto>> findByIsActiveOrderByClosedDate() {
 		return this.jobPostingService.findByIsActiveOrderByClosedDate();
 	}
-	
+
 	@GetMapping("/get/CompanyName")
-	DataResult<List<JobPostingDto>> findByIsActiveAndEmployer_CompanyName(String companyName){
+	DataResult<List<JobPostingDto>> findByIsActiveAndEmployer_CompanyName(String companyName) {
 		return this.jobPostingService.findByIsActiveAndEmployer_CompanyName(companyName);
-		
+
+	}
+
+	@GetMapping("/get/City/jobPosting")
+	DataResult<List<JobPostingDto>> findByCity_Name(String name) {
+		return this.jobPostingService.findByCity_Name(name);
 	}
 }

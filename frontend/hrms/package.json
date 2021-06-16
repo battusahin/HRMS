@@ -9,6 +9,10 @@
     "@trendmicro/react-sidenav": "^0.5.0",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "email-validator": "^2.0.4",
+    "formik": "^2.2.9",
+    "formik-semantic-ui-react": "^2.0.0",
+    "mdbreact": "^5.0.2",
     "react": "^17.0.2",
     "react-bootstrap": "^1.6.1",
     "react-dom": "^17.0.2",
@@ -18,7 +22,8 @@
     "react-scripts": "4.0.3",
     "semantic-ui-css": "^2.4.1",
     "semantic-ui-react": "^2.0.3",
-    "web-vitals": "^1.1.2"
+    "web-vitals": "^1.1.2",
+    "yup": "^0.32.9"
   },
   "scripts": {
     "start": "react-scripts start",
