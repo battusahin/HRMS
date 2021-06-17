@@ -57,4 +57,9 @@ public class JobPostingController {
 	DataResult<List<JobPostingDto>> findByCity_Name(String name) {
 		return this.jobPostingService.findByCity_Name(name);
 	}
+	
+	@GetMapping("/getById")
+	DataResult<JobPosting> findById(int id){
+		return this.jobPostingService.getById(id);
+	}
 }

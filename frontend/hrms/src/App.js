@@ -1,9 +1,9 @@
-import "./App.css";
-import Navi from "./layouts/Navi";
-import Footer from "./layouts/Footer";
 import "semantic-ui-css/semantic.min.css";
-import { Container } from "semantic-ui-react";
+import { Container } from 'semantic-ui-react';
 import Dashboard from './layouts/Dashboard';
+import Navi from '../src/layouts/Navi'
+import Footer from './layouts/Footer';
+import './App.css';
 
 
 function App() {
@@ -11,9 +11,10 @@ function App() {
     <div className="App">
       <Navi />
       <Container className="main">
-        <Dashboard/>
+        <Dashboard />
       </Container>
-      <Footer className="footer"/>
+      <Footer className="footer" />
+
     </div>
   );
 }

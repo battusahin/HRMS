@@ -55,9 +55,14 @@ public class ResumeController {
 		
 	}
 	
-	@GetMapping("/getByCandidateId")
+	@GetMapping("/getByCandidateIdList")
 	public DataResult<List<ResumeDto>> findAllByCandidateId(@RequestParam("user_id") int candidateId) {
 		return this.resumeService.findAllByCandidateId(candidateId);
+	}
+	
+	@GetMapping("/getByCandidateId")
+	public DataResult<Resume> getByCandidateId(int candidateId) {
+		return this.resumeService.getByCandidateId(candidateId);
 	}
 	
 }

@@ -20,4 +20,5 @@ public interface ResumeService {
 
 	Result saveImage(MultipartFile file, int resumeId);
 
+	DataResult<Resume> getByCandidateId(int candidateId);
 }

@@ -17,5 +17,7 @@ public interface JobPostingService {
 	DataResult<List<JobPostingDto>> findByIsActiveOrderByClosedDate();
 	DataResult<List<JobPostingDto>> findByIsActiveAndEmployer_CompanyName(String companyName);
 	DataResult<List<JobPostingDto>> findByCity_Name(String name);
-
+	DataResult<JobPosting> getById(int id);
+	
+	
 }

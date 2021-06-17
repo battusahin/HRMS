@@ -11,7 +11,6 @@ export default function Employer() {
         <div>
             <Table inverted celled fixed>
                 <Table.Header>
-                    
                     <Table.Row>
                         <Table.HeaderCell>E-mail</Table.HeaderCell>
                         <Table.HeaderCell>ŞİRKET ADI</Table.HeaderCell>
@@ -23,7 +22,7 @@ export default function Employer() {
                 <Table.Body>
                     {employers.map((employer) => (
                         <Table.Row key={employer.id}>
-                            <Table.Cell>{employer.email}</Table.Cell>
+                            <Table.Cell>{employer.mail}</Table.Cell>
                             <Table.Cell>{employer.companyName}</Table.Cell>
                             <Table.Cell>{employer.webAddress}</Table.Cell>
                             <Table.Cell>{employer.phoneNumber}</Table.Cell>

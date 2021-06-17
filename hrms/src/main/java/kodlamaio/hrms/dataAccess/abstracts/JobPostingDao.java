@@ -13,5 +13,6 @@ public interface JobPostingDao extends JpaRepository<JobPosting, Integer>{
 	List<JobPosting> findByIsActiveOrderByClosedDate(boolean status);
 	List<JobPosting> findByIsActiveAndEmployer_CompanyName(boolean status, String companyName);
 	List<JobPosting> findByCity_Name(String name);
+	JobPosting getById(int id);
 	
 }

@@ -15,6 +15,7 @@ import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.core.utilities.result.DataResult;
 import kodlamaio.hrms.core.utilities.result.Result;
 import kodlamaio.hrms.entities.concretes.Employer;
+import kodlamaio.hrms.entities.concretes.JobPosting;
 @CrossOrigin
 @RestController
 @RequestMapping("/api/employers")
@@ -35,5 +36,10 @@ public class EmployerController {
 	@PostMapping("/add")
 	public Result newEmployer(@Valid @RequestBody Employer employer) {
 		return employerService.add(employer);
+	}
+	
+	@GetMapping("/getById")
+	DataResult<Employer> findById(int id){
+		return this.employerService.getById(id);
 	}
 }

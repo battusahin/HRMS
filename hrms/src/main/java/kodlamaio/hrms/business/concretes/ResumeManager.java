@@ -65,4 +65,11 @@ public class ResumeManager implements ResumeService {
 		return new SuccessResult("Kayıt Başarılı");
 	}
 
+	@Override
+	public DataResult<Resume> getByCandidateId(int candidateId) {
+		
+		return new SuccessDataResult<Resume>(resumeDao.getByCandidateId(candidateId), "Data Listelendi");
+		
+	}
+
 }

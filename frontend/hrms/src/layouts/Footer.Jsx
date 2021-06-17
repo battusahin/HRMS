@@ -1,9 +1,9 @@
-import React from "react";
-import { Nav } from "react-bootstrap";
+import React from 'react'
+
 export default function Footer() {
-  return (
-    <div>
-     
-    </div>
-  );
+    return (
+        <div>
+            
+        </div>
+    )
 }

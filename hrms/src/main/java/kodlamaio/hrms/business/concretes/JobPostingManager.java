@@ -78,4 +78,11 @@ public class JobPostingManager implements JobPostingService {
 				"Data Listelendi");
 	}
 
+	@Override
+	public DataResult<JobPosting> getById(int id) {
+		
+		return new SuccessDataResult<JobPosting>(jobPostingDao.getById(id), "Data Listelendi.");
+		
+	}
+
 }

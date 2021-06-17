@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import CityService from '../services/cityService'
 import JobPostingService from '../services/jobPostingService';
-import { Formik, setNestedObjectValues } from "formik";
-import { Form, Input, SubmitButton, ResetButton, TextArea, Select } from 'formik-semantic-ui-react'
-import { Grid, Header, Segment, FormGroup, FormField, Label } from 'semantic-ui-react'
+import { Formik} from "formik";
+import { Form, Input, SubmitButton, TextArea, Select } from 'formik-semantic-ui-react'
+import { FormGroup, FormField, Label } from 'semantic-ui-react'
 import * as yup from "yup";
 import WorkTimeService from '../services/workTimeService';
 import WorkPlaceService from '../services/workPlaceService';
@@ -11,7 +11,7 @@ import WorkPlaceService from '../services/workPlaceService';
 export default function AddJobPosting() {
 
     const [cities, setCities] = useState([]);
-    const [workTime,setWorkTime] = useState([]);
+    const [workTimes,setWorkTime] = useState([]);
     const [workPlaces,setWorkPlace] = useState([])
 
     useEffect(() => {
@@ -28,8 +28,8 @@ export default function AddJobPosting() {
         return { key: city.id, text: city.name, value: city.id, id: city.id };
     });
 
-    var workTimeOptions = workTime.map(function(worktime){
-        return {key: worktime.id, text: worktime.name, value: worktime.id,id:worktime.id};
+    var workTimeOptions = workTimes.map(function(workTime){
+        return {key: workTime.id, text: workTime.name, value: workTime.id,id:workTime.id};
     })
 
     var workPlaceOptions = workPlaces.map(function (workPlace) {
@@ -90,6 +90,8 @@ export default function AddJobPosting() {
                 }) => (
                     <Form>
                         <FormGroup widths="equal">
+                            
+                                
                             <FormField>
                                 <Input
                                     name="createdDate"
@@ -104,6 +106,7 @@ export default function AddJobPosting() {
                                     </Label>
                                 )}
                             </FormField>
+                            
 
                             <FormField>
                                 <Input
@@ -119,6 +122,7 @@ export default function AddJobPosting() {
                                     </Label>
                                 )}
                             </FormField>
+                          
 
                             <FormField>
                                 <Input
